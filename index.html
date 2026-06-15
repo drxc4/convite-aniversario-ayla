@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aniversário Ayla Maria</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+    url("convite.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 0 30px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    color:#8b5bb8;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.info{
+    background:#f8f2ff;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+.info p{
+    margin:10px 0;
+    color:#444;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-local{
+    background:#8b5bb8;
+    color:white;
+    margin-bottom:15px;
+}
+
+.btn-local:hover{
+    background:#74489f;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+input{
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.btn-confirmar{
+    background:#25D366;
+    color:white;
+}
+
+.btn-confirmar:hover{
+    background:#1eb858;
+}
+
+.aviso{
+    text-align:center;
+    margin-top:15px;
+    color:#666;
+    font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Ayla Maria</h1>
+
+    <p class="subtitulo">
+        Jardim Encantado 🌸
+    </p>
+
+    <div class="info">
+        <p><strong>🎂 Aniversário:</strong> 1 aninho</p>
+        <p><strong>📅 Data:</strong> 11 de Julho</p>
+        <p><strong>🕕 Horário:</strong> 18:00 horas</p>
+        <p><strong>📍 Localização:</strong> Coordenadas do evento disponíveis abaixo</p>
+    </div>
+
+    <button class="btn btn-local"
+        onclick="abrirMapa()">
+        📍 Abrir Localização
+    </button>
+
+    <form id="formConfirmacao">
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite seu nome completo"
+            required>
+
+        <input
+            type="number"
+            id="acompanhantes"
+            min="0"
+            value="0"
+            placeholder="Quantidade de acompanhantes">
+
+        <button
+            type="submit"
+            class="btn btn-confirmar">
+            ✅ Confirmar Presença
+        </button>
+
+    </form>
+
+    <p class="aviso">
+        Ao confirmar, o WhatsApp será aberto automaticamente.
+    </p>
+
+</div>
+
+<script>
+
+function abrirMapa(){
+    window.open(
+        "https://maps.google.com/?q=-4.313696,-38.999968",
+        "_blank"
+    );
+}
+
+document
+.getElementById("formConfirmacao")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const nome =
+        document.getElementById("nome").value.trim();
+
+    const acompanhantes =
+        document.getElementById("acompanhantes").value;
+
+    if(nome === ""){
+        alert("Informe seu nome.");
+        return;
+    }
+
+    const mensagem =
+`Olá!
+
+Estou confirmando presença no aniversário da Ayla Maria.
+
+👤 Nome: ${nome}
+👥 Acompanhantes: ${acompanhantes}
+
+Presença confirmada com sucesso!`;
+
+    const numero = "5585996716772";
+
+    const link =
+`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(link, "_blank");
+});
+
+</script>
+
+</body>
+</html>
